@@ -50,3 +50,11 @@ The session is divided into two windows:
 
 1. The `build` window, which displays the `yarn` process panes.
 2. The `trackers` window, which is hidden by default and shows the panes for source change tracking commands. When a tracker initiates a new `yarn` process, it is displayed in a new pane within the `build` window.
+
+## Dependencies
+
+- node
+- yarn
+- fzf
+- entr
+- tmux
