@@ -1,7 +1,7 @@
 # yay
 
 ---
-<img src="https://github.com/lxgreen/yay/assets/4170342/443365bc-1d9f-42d2-bf24-c03b3ba7d321" width="100" height="100">
+<img src="https://github.com/lxgreen/yay/assets/4170342/443365bc-1d9f-42d2-bf24-c03b3ba7d321" width="200" style="display:inline">
 
 ## Overview
 
