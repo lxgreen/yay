@@ -74,12 +74,12 @@ if [ -z "$selected_workspace" ]; then
 	exit 1
 fi
 
-sleep 1
 # retrieve the dependencies
 dependencies=$(jq -r ".[] | select(.location == \"$selected_workspace\") | .dependencies[]" dep-graph.json |
 	fzf --multi --header="$DEP_FZF_HEADER" --cycle --prompt='Dependencies> ')
 
 start_spinner "Initializing dev session params..."
+sleep 1
 dep_paths=()
 
 # Iterate over each path and prepend the APP_ROOT
