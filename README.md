@@ -16,7 +16,7 @@
 ## Usage
 
 ```sh
-git clone %this_repo% ./yay
+git clone git@github.com:lxgreen/yay.git ./yay
 cd ./yay
 ./yay YOUR_MONOREPO_ROOT
 ```
