@@ -24,7 +24,7 @@ cd ./yay
 ## How it works
 
 ### Monorepo Management
-Yay operates within `yarn`-based monorepos, utilizing the `yarn workspaces` command to construct the dependency graph. It assumes each package offers a `start` script for local development (here, a "`yarn` process" denotes the `yarn start` task).
+`yay` operates within `yarn`-based monorepos, utilizing the `yarn workspaces` command to construct the dependency graph. It assumes each package offers a `start` script for local development (here, a "`yarn` process" denotes the `yarn start` task).
 
 ### Dependency Graph
 
