@@ -57,5 +57,6 @@ The session is divided into two windows:
 - node
 - yarn
 - fzf
+- jq
 - entr
 - tmux
