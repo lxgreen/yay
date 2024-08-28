@@ -1,6 +1,5 @@
 # yay
 
----
 ![yay](https://github.com/user-attachments/assets/58f993c9-911f-415c-99ab-eb11bd90511a)
 
 
