@@ -2,8 +2,6 @@
 
 ![yay](https://github.com/user-attachments/assets/58f993c9-911f-415c-99ab-eb11bd90511a)
 
-
-
 ## Overview
 
 `yay` is a development tool designed to enhance workflow efficiency in projects that use a monorepo structure with multiple interdependent packages. It simplifies the challenges associated with concurrently running and managing several `yarn start` processes for local development of various applications and their dependencies within a monorepo environment.
