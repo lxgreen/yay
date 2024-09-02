@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # wraps a command to notify on completion based on a completion message (for commands that run indefinitely)
 # Example usage:
 # notify_on_complete "yarn start" "Compiled successfully" "deploy_script.sh"

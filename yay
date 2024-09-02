@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 APP_ROOT=$1
-SCRIPT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-GRAPH_BUILDER=$SCRIPT_PATH/graph-builder.js
-RUN_YARN_TMUX=$SCRIPT_PATH/run-yarn-tmux.sh
+YAY_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+GRAPH_BUILDER=$YAY_PATH/graph-builder.js
+RUN_YARN_TMUX=$YAY_PATH/run-yarn-tmux.sh
 
-chmod +x $GRAPH_BUILDER
-chmod +x $RUN_YARN_TMUX
+chmod +x "$GRAPH_BUILDER"
+chmod +x "$RUN_YARN_TMUX"
 
-source $SCRIPT_PATH/spinner.sh
-source $SCRIPT_PATH/colors.sh
+source "$YAY_PATH"/spinner.sh
+source "$YAY_PATH"/colors.sh
 
 APP_FZF_HEADER='Select an app to run'
 DEP_FZF_HEADER='Select dependencies to track (Tab to select, Enter to confirm, Esc to quit)'
@@ -33,7 +33,7 @@ if [ ! -d "$1" ]; then
 fi
 
 # Navigate to the workspace root
-cd "$APP_ROOT"
+cd "$APP_ROOT" || exit
 
 start_spinner "Checking environment..."
 sleep 1
@@ -61,7 +61,7 @@ fi
 start_spinner "Checking dependency graph..."
 sleep 1
 if [ ! -f "dep-graph.json" ]; then
-	$SCRIPT_PATH/graph-builder.js
+	"$YAY_PATH"/graph-builder.js
 fi
 stop_spinner $?
 
@@ -74,21 +74,25 @@ if [ -z "$selected_workspace" ]; then
 	exit 1
 fi
 
-# retrieve the dependencies
-dependencies=$(jq -r ".[] | select(.location == \"$selected_workspace\") | .dependencies[]" dep-graph.json |
-	fzf --multi --header="$DEP_FZF_HEADER" --cycle --prompt='Dependencies> ')
+workspace_dependencies=$(jq -r ".[] | select(.location == \"$selected_workspace\") | .dependencies[]" dep-graph.json)
 
-start_spinner "Initializing dev session params..."
-sleep 1
 dep_paths=()
 
-# Iterate over each path and prepend the APP_ROOT
-for path in $dependencies; do
-	dep_paths+=("${APP_ROOT}/${path}")
-done
-stop_spinner $?
+if [ -n "$workspace_dependencies" ]; then
+	# retrieve the dependencies
+	dependencies=$(echo "$workspace_dependencies" | fzf --multi --header="$DEP_FZF_HEADER" --cycle --prompt='Dependencies> ')
+
+	start_spinner "Initializing dev session params..."
+	sleep 1
+
+	# Iterate over each path and prepend the APP_ROOT
+	for path in $dependencies; do
+		dep_paths+=("${APP_ROOT}/${path}")
+	done
+	stop_spinner $?
+fi
 
 print_success "Starting dev session..."
 sleep 1
-$SCRIPT_PATH/run-yarn-tmux.sh $APP_ROOT/$selected_workspace "${dep_paths[@]}"
+"$YAY_PATH"/run-yarn-tmux.sh "$APP_ROOT"/"$selected_workspace" "${dep_paths[@]}"
 print_success "Dev session ended."

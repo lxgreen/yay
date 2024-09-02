@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Author: Tasos Latsas
 
@@ -28,7 +28,6 @@ function _spinner() {
 
 	local on_success="DONE"
 	local on_fail="FAIL"
-	local white="\033[1;37m"
 	local green="\033[1;32m"
 	local red="\033[1;31m"
 	local nc="\033[0m"

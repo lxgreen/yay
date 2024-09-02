@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 FAIL="\033[31m"
 SUCCESS="\033[32m"
 REGULAR="\033[0m"
